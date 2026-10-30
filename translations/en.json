@@ -1,0 +1,12 @@
+{
+  "app": {
+    "name": "Desktop launcher",
+    "summary": "Launch a desktop action with a custom PNG icon and a Home Assistant state.",
+    "tile": "Desktop launcher",
+    "target": "Action target",
+    "target_hint": "Optional: button, helper, switch or script. Empty uses the tile entity if actionable. Sensors cannot be switched.",
+    "icon_path": "PNG icon path",
+    "icon_hint": "HA path such as /local/desktop-launcher.png. Export SVG to PNG first."
+  },
+  "screen": {}
+}
