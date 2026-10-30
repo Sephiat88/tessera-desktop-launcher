@@ -1,6 +1,6 @@
-# Tessera Desktop Launcher 1.1.0
+# Tessera Desktop Launcher 1.1.1
 
-Tessera-Plugin (API 0.24) für Desktop-Aktionen mit Entitätszustand und auswählbaren,
+Tessera-Plugin (API 0.24) für Desktop-Aktionen mit Entitätsauswahl und auswählbaren,
 fest eingebetteten Icons. LVGL 9 zeichnet die Bilddaten direkt aus der Firmware.
 
 ## Was den 404-Fehler behebt
@@ -10,7 +10,7 @@ vollständig für dieses Plugin. Die sechs Icons werden beim Firmwarebuild einge
 Die Python-Dateien des installierten Tessera-Add-ons müssen dafür nicht geändert werden.
 
 Die vorhandenen Werte `/local/Icons/bambu-lab.png`, `/local/Icons/lyra.png` usw. bleiben
-als kompatible Auswahlwerte erhalten. Sie sind ab 1.1.0 nur Schlüssel für eingebettete
+als kompatible Auswahlwerte erhalten. Sie sind ab 1.1.1 nur Schlüssel für eingebettete
 Icons: Es findet dafür **kein HTTP-Abruf** statt. Beliebige Serverpfade werden nicht geladen.
 Auch eine Kachel ohne Icon verwendet keine Bildanfrage, sondern das Laptop-Schriftzeichen.
 
@@ -18,11 +18,11 @@ Auch eine Kachel ohne Icon verwendet keine Bildanfrage, sondern das Laptop-Schri
 
 1. Den gesamten Inhalt dieses Arbeitsordners ins eigene GitHub-Repository übernehmen,
    besonders `components/desktop_launcher/embedded_icons.cpp`, `.h` und `assets/icons/`.
-2. Commit und Push. `tessera-plugin.yaml` enthält Version `1.1.0`.
+2. Commit und Push. `tessera-plugin.yaml` enthält Version `1.1.1`.
 3. Falls das Repository bereits GitHub-Releases hat: ein neues Release für diesen Stand
    veröffentlichen. Tessera bevorzugt das neueste Release. Ohne Release folgt der Link
    dem ausgewählten/default Branch; die Installation bleibt auf einen Commit angeheftet.
-4. In Tessera die Pluginquelle aktualisieren und Version 1.1.0 für BueroScreen installieren.
+4. In Tessera die Pluginquelle aktualisieren und Version 1.1.1 für BueroScreen installieren.
    Das Display muss die neu gebaute Firmware erhalten. Nur »Save & send« reicht dafür nicht.
    Die von Tessera verwaltete `bueroscreen.plugins.yaml` nicht von Hand bearbeiten.
 5. Eine Desktop-Starter-Kachel auswählen. Unter den Pluginoptionen **Icon auswählen**
@@ -35,7 +35,7 @@ Bestehende Kacheln mit den sechs bekannten Pfaden behalten ihr Icon. Kacheln ohn
 zeigen das Laptop-Symbol. Der Logeintrag nach dem Boot muss lauten:
 
 ```
-Desktop launcher 1.1.0 embedded icons
+Desktop launcher 1.1.1 embedded icons
 ```
 
 Bei einer Kachel mit Icon erscheint z. B.:
@@ -51,7 +51,8 @@ Bereits laufende alte Abrufe können bis zum Firmwarewechsel noch im Protokoll s
 
 ## Entitätsauswahl und Aktion
 
-Die Hauptentität liefert die Zustandsanzeige. Ein separates optionales **Aktionsziel**
+Die Kachel zeigt nur Icon und Namen; der Entitätszustand (on/off usw.) wird nicht angezeigt.
+Ein separates optionales **Aktionsziel**
 legt fest, was ein Tap auslöst. Leer bedeutet: Hauptentität verwenden, wenn sie schaltbar ist.
 
 | Domain | Aktion |
@@ -61,7 +62,7 @@ legt fest, was ein Tap auslöst. Leer bedeutet: Hauptentität verwenden, wenn si
 | switch | switch.toggle |
 | input_boolean | input_boolean.toggle |
 | script | script.turn_on |
-| sensor, binary_sensor | Nur Anzeige; separates Aktionsziel auswählen |
+| sensor, binary_sensor | Keine Aktion; separates Aktionsziel auswählen |
 
 Eine HA-Automation kann auf einen input_button reagieren und über MQTT den PC ansprechen.
 Die Auswahl eines Schalters als Hauptentität ohne anderes Aktionsziel schaltet diesen

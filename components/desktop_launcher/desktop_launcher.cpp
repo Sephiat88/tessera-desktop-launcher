@@ -8,7 +8,7 @@ namespace ui = tessera::ui;
 static const char *const TAG = "desktop_launcher";
 
 void DesktopLauncher::setup() {
-  ESP_LOGI(TAG, "Desktop launcher 1.1.0 embedded icons");
+  ESP_LOGI(TAG, "Desktop launcher 1.1.1 embedded icons");
   add_tile("launcher", []() -> tessera::Tile * { return new LauncherTile(); });
 }
 
@@ -19,7 +19,7 @@ void LauncherTile::create(const tessera::TileContext &c) {
   icon_path_ = c.options["icon_path"] | "";
   const int line = ui::line_height(tessera::Font::BODY);
   const int gap = ui::px(3);
-  const int side = std::max(1, std::min(c.width, c.height - 2 * line - 2 * gap));
+  const int side = std::max(1, std::min(c.width, c.height - line - gap));
 
   fallback_ = ui::label(c.parent, tessera::Font::ICON, theme::INK);
   ui::set_text(fallback_, ui::icon(0xF0322));  // laptop, included in Tessera's font
@@ -43,26 +43,13 @@ void LauncherTile::create(const tessera::TileContext &c) {
   title_ = ui::label(c.parent, tessera::Font::BODY, theme::INK);
   lv_obj_set_width(title_, c.width);
   lv_obj_set_style_text_align(title_, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
-  lv_obj_align(title_, LV_ALIGN_BOTTOM_MID, 0, -line - gap);
+  lv_obj_align(title_, LV_ALIGN_BOTTOM_MID, 0, 0);
   ui::set_text(title_, c.name && *c.name ? c.name : "Desktop");
 
-  state_ = ui::label(c.parent, tessera::Font::BODY, theme::MUTED);
-  lv_obj_set_width(state_, c.width);
-  lv_obj_set_style_text_align(state_, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
-  lv_obj_align(state_, LV_ALIGN_BOTTOM_MID, 0, 0);
-  ui::set_text(state_, "--");
-}
-
-void LauncherTile::on_state(JsonObjectConst data) {
-  std::string value = data["state"] | "--";
-  const char *unit = data["attributes"]["unit_of_measurement"] | "";
-  if (*unit) value += std::string(" ") + unit;
-  ui::set_text(state_, value);
 }
 
 void LauncherTile::on_theme() {
   ui::set_color(title_, theme::INK);
-  ui::set_color(state_, theme::MUTED);
   ui::set_color(fallback_, theme::INK);
 }
 

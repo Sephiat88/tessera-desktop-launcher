@@ -1,5 +1,10 @@
 # Änderungen
 
+## 1.1.1
+
+- Entitätszustand unter dem Icon entfernt. Kachel zeigt Icon und Namen; die Tap-Aktion bleibt erhalten.
+- Freien Platz für die Iconfläche genutzt.
+
 ## 1.1.0
 
 - Sechs vorhandene PNG-Icons direkt als LVGL-9-Bilddaten in die Firmware eingebunden.
