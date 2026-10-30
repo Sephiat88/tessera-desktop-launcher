@@ -5,8 +5,15 @@
     "tile": "Desktop launcher",
     "target": "Action target",
     "target_hint": "Optional: button, helper, switch or script. Empty uses the tile entity if actionable. Sensors cannot be switched.",
-    "icon_path": "PNG icon path",
-    "icon_hint": "Store PNG on HA in /homeassistant/www/Icons; enter /local/Icons/terminal.png here. Empty: fallback icon."
+    "icon_path": "Choose icon",
+    "icon_hint": "Choose a bundled icon. No image request to the HA server is needed.",
+    "icon_none": "Laptop (default)",
+    "icon_bambu": "Bambu Lab",
+    "icon_lyra": "Lyra",
+    "icon_terminal": "Terminal",
+    "icon_vivaldi": "Vivaldi",
+    "icon_solidcraft": "SolidCraft",
+    "icon_sublime": "Sublime Text"
   },
   "screen": {}
 }

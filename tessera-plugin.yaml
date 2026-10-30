@@ -1,29 +1,65 @@
 id: desktop_launcher
-version: "1.0.2"
-api: "0.24"
+version: 1.1.0
+api: '0.24'
 icon: monitor
 maintainer: Sephiat88
 license: MIT
 stage: beta
-topics: [tech, home]
+topics:
+- tech
+- home
 permissions:
-  home_assistant_actions: [button.press, input_button.press, switch.toggle, input_boolean.toggle, script.turn_on]
+  home_assistant_actions:
+  - button.press
+  - input_button.press
+  - switch.toggle
+  - input_boolean.toggle
+  - script.turn_on
 tiles:
-  - id: launcher
-    name: tile
-    sizes: {min: 1x1, max: 5x5}
-    memory: 2048
-    pictures: 1
-    domains: [sensor, binary_sensor, button, input_button, switch, input_boolean, script]
-    attributes: [unit_of_measurement]
-    options:
-      - id: target
-        kind: entity
-        label: target
-        hint: target_hint
-        domains: [button, input_button, switch, input_boolean, script]
-      - id: icon_path
-        kind: text
-        label: icon_path
-        hint: icon_hint
-        default: ""
+- id: launcher
+  name: tile
+  sizes:
+    min: 1x1
+    max: 5x5
+  memory: 2048
+  domains:
+  - sensor
+  - binary_sensor
+  - button
+  - input_button
+  - switch
+  - input_boolean
+  - script
+  attributes:
+  - unit_of_measurement
+  options:
+  - id: target
+    kind: entity
+    label: target
+    hint: target_hint
+    domains:
+    - button
+    - input_button
+    - switch
+    - input_boolean
+    - script
+  - id: icon_path
+    kind: choice
+    label: icon_path
+    hint: icon_hint
+    default: none
+    choices:
+    - value: none
+      label: icon_none
+    - value: /local/Icons/bambu-lab.png
+      label: icon_bambu
+    - value: /local/Icons/lyra.png
+      label: icon_lyra
+    - value: /local/Icons/terminal.png
+      label: icon_terminal
+    - value: /local/Icons/vivaldi.png
+      label: icon_vivaldi
+    - value: /local/Icons/SolidCraft_logo.png
+      label: icon_solidcraft
+    - value: /local/Icons/sublime-text.png
+      label: icon_sublime

@@ -5,8 +5,15 @@
     "tile": "Desktop-Starter",
     "target": "Aktionsziel",
     "target_hint": "Optional: Taster, Helfer, Schalter oder Skript. Leer verwendet die Kachelentität, sofern schaltbar. Sensoren sind nur lesbar.",
-    "icon_path": "PNG-Icon-Pfad",
-    "icon_hint": "PNG auf HA unter /homeassistant/www/Icons ablegen; hier /local/Icons/terminal.png eintragen. Leer: Ersatzsymbol."
+    "icon_path": "Icon auswählen",
+    "icon_hint": "Eingebettetes Icon auswählen. Kein Bildabruf vom HA-Server erforderlich.",
+    "icon_none": "Laptop (Standard)",
+    "icon_bambu": "Bambu Lab",
+    "icon_lyra": "Lyra",
+    "icon_terminal": "Terminal",
+    "icon_vivaldi": "Vivaldi",
+    "icon_solidcraft": "SolidCraft",
+    "icon_sublime": "Sublime Text"
   },
   "screen": {}
 }

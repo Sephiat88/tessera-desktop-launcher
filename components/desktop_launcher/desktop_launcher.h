@@ -10,7 +10,6 @@ class LauncherTile : public tessera::Tile {
   void on_state(JsonObjectConst data) override;
   void on_theme() override;
   void on_tap() override;
-  void on_picture(lv_obj_t *place, tessera::PictureState state) override;
  private:
   std::string entity_, target_, icon_path_;
   lv_obj_t *title_{}, *state_{}, *fallback_{}, *picture_{};
