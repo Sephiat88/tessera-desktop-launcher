@@ -7,6 +7,7 @@ namespace ui = tessera::ui;
 static const char *const TAG = "desktop_launcher";
 
 void DesktopLauncher::setup() {
+  ESP_LOGI(TAG, "Desktop launcher 1.0.1 diagnostic build");
   add_tile("launcher", []() -> tessera::Tile * { return new LauncherTile(); });
 }
 
@@ -15,6 +16,11 @@ void LauncherTile::create(const tessera::TileContext &c) {
   entity_ = c.entity ? c.entity : "";
   target_ = c.options["target"] | "";
   icon_path_ = c.options["icon_path"] | "";
+  ESP_LOGI(TAG, "create: entity=%s icon=%s pictures=%s area=%dx%d",
+           entity_.c_str(), icon_path_.c_str(), ui::pictures() ? "yes" : "no", c.width, c.height);
+  if (!ui::pictures()) ESP_LOGW(TAG, "Tessera picture pipeline unavailable");
+  else if (icon_path_.rfind("/local/", 0) != 0)
+    ESP_LOGW(TAG, "Icon path must start with /local/");
   const int line = ui::line_height(tessera::Font::BODY);
   const int gap = ui::px(3);
   const int side = std::max(1, std::min(c.width, c.height - 2 * line - 2 * gap));
@@ -27,6 +33,7 @@ void LauncherTile::create(const tessera::TileContext &c) {
     picture_ = ui::picture(c.parent);
     lv_obj_set_size(picture_, side, side);
     lv_obj_align(picture_, LV_ALIGN_TOP_MID, 0, 0);
+    ESP_LOGI(TAG, "Picture place: %dx%d source=%s", side, side, icon_path_.c_str());
     // Core requests the image from HA via the add-on; LVGL draws the prepared atlas.
     ui::set_picture(picture_, icon_path_, tessera::Fit::CONTAIN);
     lv_obj_move_foreground(fallback_);
@@ -60,6 +67,9 @@ void LauncherTile::on_theme() {
 
 void LauncherTile::on_picture(lv_obj_t *place, tessera::PictureState result) {
   if (place != picture_) return;
+  const char *outcome = result == tessera::PictureState::SHOWN ? "SHOWN" :
+                        result == tessera::PictureState::NONE ? "NONE" : "FAILED";
+  ESP_LOGI(TAG, "Picture outcome: %s source=%s", outcome, icon_path_.c_str());
   if (result == tessera::PictureState::SHOWN) {
     lv_obj_add_flag(fallback_, LV_OBJ_FLAG_HIDDEN);
   } else {

@@ -1,5 +1,5 @@
 id: desktop_launcher
-version: "1.0.0"
+version: "1.0.1"
 api: "0.24"
 icon: monitor
 maintainer: Sephiat88
@@ -26,4 +26,4 @@ tiles:
         kind: text
         label: icon_path
         hint: icon_hint
-        default: /local/Icons/desktop-launcher.png
+        default: ""

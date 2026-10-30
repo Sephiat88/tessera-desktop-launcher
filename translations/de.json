@@ -6,7 +6,7 @@
     "target": "Aktionsziel",
     "target_hint": "Optional: Taster, Helfer, Schalter oder Skript. Leer verwendet die Kachelentität, sofern schaltbar. Sensoren sind nur lesbar.",
     "icon_path": "PNG-Icon-Pfad",
-    "icon_hint": "HA-Pfad wie /local/Icons/desktop-launcher.png. SVG vorher als PNG exportieren."
+    "icon_hint": "PNG auf HA unter /homeassistant/www/Icons ablegen; hier /local/Icons/terminal.png eintragen. Leer: Ersatzsymbol."
   },
   "screen": {}
 }
