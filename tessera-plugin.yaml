@@ -26,4 +26,4 @@ tiles:
         kind: text
         label: icon_path
         hint: icon_hint
-        default: /local/desktop-launcher.png
+        default: /local/Icons/desktop-launcher.png
